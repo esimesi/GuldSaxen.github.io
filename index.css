@@ -207,10 +207,12 @@ nav li {
   font-size: 1.5em;  /* Increase the font size */
   font-weight: bold;  /* Make the text bolder */
   margin-bottom: 5px;  /* Spacing between the lines for readability */
+  white-space: nowrap;
 }
 nav ul {
   list-style-type: none;
   padding: 0;
+  white-space: nowrap;
 }
 
 .hidden-header #logo, .desktop-nav #logo {
