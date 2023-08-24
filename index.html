@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A modern barber website featuring the best hairstyles and products.">
+    <link rel="stylesheet" href="index.css">
+    <title>Your Website</title>
+</head>
+
+<body>
+    <div class="logo-container">
+        <div id="logo">
+            <img src="icons/barber-logo.png" alt="Logo">
+        </div>
+    </div>
+    
+    <!-- Video Background Section -->
+    <section class="video-background">
+        <div class="main-page">
+            <video autoplay muted loop playsinline id="videoBackground">
+                <source src="video-background/barbershop-background.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="gradient-overlay"></div>
+            <div class="overlay-content">
+              <img src="pictures/professionella.png" alt="Guldsaxen" class="centered-image">
+            </div>
+        </div>
+    </section>
+
+    <div id="scrollingHeader" class="hidden-header">
+        <div class="header-content">
+            <div class="header-links">
+            </div>
+            <div class="header-logo">
+                <img src="icons/barber-logo.png" alt="Your Logo">
+            </div>
+        </div>
+    </div>
+    
+    
+    <!-- Hamburger Menu for Smaller Screens -->
+    <input id="burger" type="checkbox" />
+    <label for="burger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
+    <nav>
+        <ul>
+            <li><strong>Öppettider:</strong></li>
+            <li>Mån - Fre: 10:00 - 18:00</li>
+            <li>Lör: 10:00 - 16:00</li>
+            <li>Sön: Stängt</li>
+        </ul>
+    </nav>
+
+    <div class="desktop-nav">
+        <div id="logo" class="logo-desktop">
+            <img src="icons/barber-logo.png" alt="Logo">
+        </div>
+    </div>
+    
+    <!-- slider section -->
+    <div  class="content-container">
+        <div class="text-section">
+            <!-- Place your text content here -->
+            <h2>Inga Bokningar Behövs!</h2>
+            <p>Här på <span class="Guldsaxen">Guld</span>saxen, tror vi på spontanitet och flexibilitet. Vi erbjuder inte bokningstjänster, istället välkomnar vi våra kunder på drop-in basis. Så oavsett om du känner för en snabb trimning eller en komplett omgestaltning, kom bara in när det passar dig bäst. Vårt professionella team är redo att ta hand om dina behov.</p>
+        </div>
+        <section class="pen">
+            <div class="stage">
+                <div class="element hair"></div>
+                <div class="element beard"></div>
+                <div class="element product"></div>
+            </div>
+        </section>
+    </div>
+
+    
+    <div class="video-text-container">
+        <div class="video-section">
+            <video autoplay muted loop playsinline>
+                <source src="video-background/Secondvid.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="video-text-section">
+            <div class="video-text-details">
+                <div class="name-price-container">
+                    <span class="name">Hår</span>
+                    <div class="line"></div>
+                    <span class="price">250:-</span>
+                </div>
+                <span class="description">Klipp ditt hår av en professionel</span>
+            </div>
+            <div class="video-text-details">
+                <div class="name-price-container">
+                    <span class="name">Skägg</span>
+                    <div class="line"></div>
+                    <span class="price">200:-</span>
+                </div>
+                <span class="description">Skäggperfektion, varje gång</span>
+            </div>
+            <div class="video-text-details">
+                <div class="name-price-container">
+                    <span class="name">student pris</span>
+                    <div class="line"></div>
+                    <span class="price">200:-</span>
+                </div>
+                <span class="description">Samma service, lite biligare</span>
+            </div>
+            <!-- You can add more columns by copying and pasting the 'video-text-details' div -->
+        </div>
+    </div>
+    
+    <!--Scrolling banner-->
+    <div class="scrolling-banner">
+        <div class="banner-text">Hos oss behövs ingen bokning. Drop-in när du har tid.</div>
+    </div>
+
+
+    <!--Map and contacts-->
+    <div class="parent-of-map-container">
+        <div class="map-container">
+            <!-- Bädda in din Google Maps iframe här -->
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1759.8498914943839!2d20.25965857760673!3d63.82685704326291!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x467c5ba95a8f1ded%3A0x9535f04a9c34c356!2sGuldsaxen!5e0!3m2!1sen!2sse!4v1692837176780!5m2!1sen!2sse" width="500" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <div class="info-section">
+                <h2>Hitta oss</h2>
+                <p>Vår butik ligger i hjärtat av staden, enkelt att nå och mitt i all stadens puls. En perfekt plats för dig som vill ha högkvalitativa frisörtjänster mitt i centrum</p>
+                <div class="details-section">
+                    <div class="contact-details">
+                        <h3>Kontakt</h3>
+                        <p>Adress: Skolgatan 58B, Umeå</p>
+                        <p>Telefon: 090 - 3409995</p>
+                    </div>
+                    <div class="opening-times">
+                        <h3>Öppettider</h3>
+                        <p>Mån - Fre: 10:00 - 18:00</p>
+                        <p>Lör: 10:00 - 16:00</p>
+                        <p>Sön: Stängt</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+
+    <!-- pictures-->
+
+    <div class="pictures-grid">
+        
+        <img src="pictures/IMG-20230817-WA0002.jpg" alt="Description 1">
+        <img src="pictures/IMG-20230817-WA0005.jpg" alt="Description 1">
+        <img src="pictures/IMG-20230817-WA0006.jpg" alt="Description 1">
+        <img src="pictures/IMG-20230817-WA0008.jpg" alt="Description 1">
+        <img src="pictures/IMG-20230817-WA0010.jpg" alt="Description 1">
+        <img src="pictures/IMG-20230817-WA0012.jpg" alt="Description 1">
+        <img src="pictures/IMG-20230817-WA0002.jpg" alt="Description 1">
+        <img src="pictures/IMG-20230817-WA0006.jpg" alt="Description 1">
+      
+    </div>
+
+    <!-- footer-->
+    <footer>
+        <div class="footer-logo">
+            <!-- Infoga din logotyp här -->
+            <img src="icons/professionella (1).png" alt="Företagslogotyp" class="footer-logo">
+        </div>
+        
+        <div class="footer-content">
+            <!-- Kontaktsektion till vänster -->
+            <div class="footer-contacts">
+                <h4>Kontakt</h4>
+                <p>Adress: Skolgatan 58B, Umeå
+                </p>
+                <p>Telefon: 090 - 3409995</p>
+            </div>
+    
+            <!-- Sociala medier-sektion i mitten -->
+            <div class="footer-socials">
+                <h4>Följ Oss</h4>
+                <!-- Ersätt `#` med faktiska sociala medier-länkar -->
+                <a href="https://m.facebook.com/profile.php?id=100054591753142&_rdr"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/umeaguldsaxen/?hl=en"><i class="fab fa-instagram"></i></a>
+            </div>
+    
+            <!-- Öppettider till höger -->
+            <div class="footer-hours">
+                <h4>Öppettider</h4>
+                <p>Mån - Fre: 10.00 - 18.00</p>
+                <p>Lör: 10.00 - 16.00</p>
+                <p>Sön: Stängt</p>
+            </div>
+        </div>
+    </footer>
+    <div class="social-logos">
+        <a href="https://www.instagram.com/umeaguldsaxen/?hl=en" target="_blank" class="instagram-logo">
+            <img src="icons/instagram.png" alt="instagram">
+        </a>
+        <a href="https://m.facebook.com/profile.php?id=100054591753142&_rdr" target="_blank" class="facebook-logo">
+            <img src="icons/facebook.png" alt="facebook">
+        </a>
+    </div>
+    
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=DITT_API_NYCKEL&callback=initMap"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="index.js"></script>
+    </body>
+    
+    </html>
+    
