@@ -814,7 +814,7 @@ iframe {
 
   iframe {
     margin: 10px 0; /* Adjust margin around iframe for better spacing */
-    width: 1000px;
+    width: 100%;
   }
 
   .info-section {
