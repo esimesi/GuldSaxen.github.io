@@ -768,13 +768,60 @@ nav ul {
   margin: 20px;
   width: 100%; 
   justify-content: center; 
+  gap: 40px;
+  padding: 40px;
+  background: #ffffff;
+  border-radius: 32px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 25px 55px rgba(0, 0, 0, 0.25);
 }
 
-iframe {
+.map-wrapper {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  max-width: 520px;
+}
+
+.map-wrapper iframe {
   border: none;
-  margin-right: 20px;
-  max-width: 100%; 
-  aspect-ratio: 1; /* This will maintain a square aspect ratio. Adjust as needed */
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1;
+  border-radius: 24px;
+  overflow: hidden;
+  filter: grayscale(1) invert(1) contrast(1.15) brightness(0.85);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+  transition: transform 0.45s ease, filter 0.45s ease;
+  min-height: 500px;
+}
+
+.map-wrapper iframe:hover {
+  transform: translateY(-6px);
+  filter: grayscale(1) invert(1) contrast(1.25) brightness(0.95);
+}
+
+.map-pin {
+  position: absolute;
+  left: 65px;
+  bottom: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgb(218,145,0) 0%, rgb(200,130,0) 100%);
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  color: #ffffff;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.35), 0 0 20px rgba(218,145,0,0.4);
+  pointer-events: none;
+}
+
+.map-pin i {
+  color: #ffffff;
+  font-size: 1.4rem;
 }
 
 .info-section {
@@ -784,6 +831,7 @@ iframe {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  color: #0c0c0c;
 }
 
 .details-section {
@@ -804,17 +852,31 @@ iframe {
 @media (max-width: 1000px) {
   .map-container {
     flex-direction: column;
-    padding-top: 50px;
+    padding-top: 30px;
     margin: 20px; /* Add this if you want margin around the map-container */
+    gap: 20px;
+    padding: 30px;
   }
 
   .opening-times {
     padding-bottom: 70px;
   }
 
-  iframe {
+  .map-wrapper {
+    max-width: 100%;
+  }
+
+  .map-wrapper iframe {
     margin: 10px 0; /* Adjust margin around iframe for better spacing */
     width: 100%;
+    aspect-ratio: 4 / 3;
+  }
+
+  .map-pin {
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    justify-content: center;
   }
 
   .info-section {
