@@ -5,12 +5,43 @@
     <link rel="icon" href="icons/Guld saxen.png" type="image/png">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha512-Zcn6bjR/8RZbLEpLIeOwNtzREBAJnUKESxces60Mpoj+2okopSAcSUIUOseddDm0cxnGQzxIR7vJgsLZbdLE3w==" crossorigin="" />
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A modern barber website featuring the best hairstyles and products.">
+    <meta name="description" content="Guldsaxen i Umeå erbjuder drop-in klippning, skägg och grooming på Skolgatan 58B – välkommen in utan bokning!">
     <link rel="stylesheet" href="index.css">
-    <title>Your Website</title>
+    <title>Guldsaxen Barbershop – Drop-in i Umeå</title>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Barbershop",
+        "name": "Guldsaxen",
+        "image": "https://xn--guldsaxenume-4cb.se/icons/barber-logo.png",
+        "telephone": "+46903409995",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Skolgatan 58B",
+            "addressLocality": "Umeå",
+            "postalCode": "903 27",
+            "addressCountry": "SE"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 63.826851337015796,
+            "longitude": 20.26223015911486
+        },
+        "openingHoursSpecification": [
+            {"@type": "OpeningHoursSpecification","dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens": "10:00","closes": "18:00"},
+            {"@type": "OpeningHoursSpecification","dayOfWeek": ["Saturday"],"opens": "10:00","closes": "15:00"}
+        ],
+        "url": "https://xn--guldsaxenume-4cb.se/",
+        "sameAs": [
+            "https://www.facebook.com/people/Guldsaxen/61563805727143/",
+            "https://www.instagram.com/guldsaxen_umea/"
+        ]
+    }
+    </script>
 </head>
 
 <body>
@@ -21,12 +52,15 @@
     </div>
     
     <!-- Video Background Section -->
-    <section class="video-background">
+    <section class="video-background" id="hero">
         <div class="main-page">
             <video autoplay muted loop playsinline id="videoBackground">
                 <source src="video-background/barbershop-background.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
+            <div class="hero-logo-overlay">
+                <img src="icons/barber-logo.png" alt="Guldsaxen logo" width="200" height="120">
+            </div>
             <div class="gradient-overlay"></div>
             <div class="overlay-content">
               <img src="pictures/professionella.png" alt="Guldsaxen" class="centered-image">
@@ -37,6 +71,11 @@
     <div id="scrollingHeader" class="hidden-header">
         <div class="header-content">
             <div class="header-links">
+                <a href="#hero">Hem</a>
+                <a href="#tjanster">Tjänster</a>
+                <a href="#karta">Karta</a>
+                <a href="#galleri">Galleri</a>
+                <a href="#kontakt">Kontakt</a>
             </div>
             <div class="header-logo">
                 <img src="icons/barber-logo.png" alt="Your Logo">
@@ -53,8 +92,15 @@
         <span></span>
     </label>
     <nav>
-        <ul>
-            <li><strong>Öppettider:</strong></li>
+        <ul class="mobile-nav-links">
+            <li><a href="#hero">Hem</a></li>
+            <li><a href="#tjanster">Tjänster</a></li>
+            <li><a href="#karta">Karta</a></li>
+            <li><a href="#galleri">Galleri</a></li>
+            <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+        <ul class="mobile-hours">
+            <li><strong>Öppettider</strong></li>
             <li>Mån - Fre: 10:00 - 18:00</li>
             <li>Lör: 10:00 - 15:00</li>
             <li>Sön: Stängt</li>
@@ -65,26 +111,33 @@
         <div id="logo" class="logo-desktop">
             <img src="icons/barber-logo.png" alt="Logo">
         </div>
+        <div class="nav-links">
+            <a href="#hero">Hem</a>
+            <a href="#tjanster">Tjänster</a>
+            <a href="#karta">Karta</a>
+            <a href="#galleri">Galleri</a>
+            <a href="#kontakt">Kontakt</a>
+        </div>
     </div>
     
     <!-- slider section -->
-    <div  class="content-container">
+    <div  class="content-container" id="tjanster-intro">
         <div class="text-section">
             <!-- Place your text content here -->
-            <h2>Inga Bokningar Behövs!</h2>
+            <h2 class="no-break-title">Inga Bokningar Behövs!</h2>
             <p>Här på <span class="Guldsaxen">Guld</span>saxen, tror vi på spontanitet och flexibilitet. Vi erbjuder inte bokningstjänster, istället välkomnar vi våra kunder på drop-in basis. Så oavsett om du känner för en snabb trimning eller en komplett omgestaltning, kom bara in när det passar dig bäst. Vårt professionella team är redo att ta hand om dina behov.</p>
         </div>
-        <section class="pen">
+        <section class="pen" aria-label="Tjänsteöversikt">
             <div class="stage">
-                <div class="element hair"></div>
-                <div class="element beard"></div>
-                <div class="element product"></div>
+                <button class="element hair" type="button" data-slide="0" aria-label="Hår"></button>
+                <button class="element beard" type="button" data-slide="1" aria-label="Skägg"></button>
+                <button class="element product" type="button" data-slide="2" aria-label="Produkter"></button>
             </div>
         </section>
     </div>
 
     
-    <div class="video-text-container">
+    <div class="video-text-container" id="tjanster">
         <div class="video-section">
             <video autoplay muted loop playsinline>
                 <source src="video-background/Secondvid.mp4" type="video/mp4">
@@ -156,20 +209,28 @@
         <div class="banner-text">Hos oss behövs ingen bokning. Drop-in när du har tid.</div>
     </div>
 
+    <section class="cta-panel">
+        <div class="cta-content">
+            <h3>Redo för en ny look?</h3>
+            <p>Välkommen in på drop-in! Vårt team står redo varje dag för snabba klippningar, skäggtrim och styling utan krångel.</p>
+            <div class="cta-actions">
+                <a class="btn-primary" href="#karta">Hitta oss</a>
+                <a class="btn-secondary" href="tel:0903409995">Ring 090 - 3409995</a>
+            </div>
+        </div>
+    </section>
+
 
     <!--Map and contacts-->
-    <div class="parent-of-map-container">
+    <div class="parent-of-map-container" id="karta">
         <div class="map-container">
             <div class="map-wrapper">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1759.8498914943577!2d20.259658577095056!3d63.82685704326333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x467c5ba95a8f1ded%3A0x9535f04a9c34c356!2sGuldsaxen!5e0!3m2!1ssv!2sse!4v1763313287522!5m2!1ssv!2sse" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                <div class="map-pin">
-                    <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
-                    <span>Skolgatan 58B</span>
-                </div>
+                <div id="map" aria-label="Karta över Guldsaxen" role="presentation"></div>
             </div>
             <div class="info-section">
                 <h2>Hitta oss</h2>
                 <p>Vår butik ligger i hjärtat av staden, enkelt att nå och mitt i all stadens puls. En perfekt plats för dig som vill ha högkvalitativa frisörtjänster mitt i centrum</p>
+                <a class="btn-primary map-button" href="https://www.google.com/maps/dir/?api=1&destination=63.826851337015796,20.26223015911486" target="_blank" rel="noopener noreferrer">Visa vägbeskrivning</a>
                 <div class="details-section">
                     <div class="contact-details">
                         <h3>Kontakt</h3>
@@ -187,25 +248,34 @@
         </div>
     </div>
     
-    
+    <section class="style-marquee" id="stilar">
+        <div class="style-marquee-header">
+            <p class="eyebrow">Inspiration</p>
+            <h2>Se vad vi skapar varje dag</h2>
+            <p>En jämn ström av fades, skäggformer, klassiker och trendklipp. Här rullar ett urval av looks direkt från stolen.</p>
+        </div>
+        <div class="style-marquee-window" aria-label="Exempel på frisyrer och behandlingar">
+            <div class="style-marquee-track" aria-live="off"></div>
+        </div>
+    </section>
 
     <!-- pictures-->
 
-    <div class="pictures-grid">
+    <div class="pictures-grid" id="galleri">
         
-        <img src="pictures/IMG-20230817-WA0002.jpg" alt="Description 1">
-        <img src="pictures/IMG-20230817-WA0005.jpg" alt="Description 1">
-        <img src="pictures/IMG-20230817-WA0006.jpg" alt="Description 1">
-        <img src="pictures/IMG-20230817-WA0008.jpg" alt="Description 1">
-        <img src="pictures/IMG-20230817-WA0010.jpg" alt="Description 1">
-        <img src="pictures/IMG-20230817-WA0012.jpg" alt="Description 1">
-        <img src="pictures/IMG-20230817-WA0002.jpg" alt="Description 1">
-        <img src="pictures/IMG-20230817-WA0006.jpg" alt="Description 1">
+        <img src="pictures/IMG-20230817-WA0002.jpg" alt="Description 1" loading="lazy" width="600" height="600">
+        <img src="pictures/IMG-20230817-WA0005.jpg" alt="Description 1" loading="lazy" width="600" height="600">
+        <img src="pictures/IMG-20230817-WA0006.jpg" alt="Description 1" loading="lazy" width="600" height="600">
+        <img src="pictures/IMG-20230817-WA0008.jpg" alt="Description 1" loading="lazy" width="600" height="600">
+        <img src="pictures/IMG-20230817-WA0010.jpg" alt="Description 1" loading="lazy" width="600" height="600">
+        <img src="pictures/IMG-20230817-WA0012.jpg" alt="Description 1" loading="lazy" width="600" height="600">
+        <img src="pictures/IMG-20230817-WA0002.jpg" alt="Description 1" loading="lazy" width="600" height="600">
+        <img src="pictures/IMG-20230817-WA0006.jpg" alt="Description 1" loading="lazy" width="600" height="600">
       
     </div>
 
     <!-- footer-->
-    <footer>
+    <footer id="kontakt">
         <div class="footer-logo">
             <!-- Infoga din logotyp här -->
             <img src="icons/professionella (1).png" alt="Företagslogotyp" class="footer-logo">
@@ -246,6 +316,7 @@
     </div>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha512-BwHfrr4c9kmRkLw6iXFdzcdWV/PGkVgiIyIWLLlTSXzWQzxuSg4DiQUCpauz/EWjgk5TYQqX/kvn9pG1NpYfqg==" crossorigin=""></script>
     <script src="index.js"></script>
     </body>
     

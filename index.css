@@ -101,6 +101,29 @@ body input + label {
   overflow: hidden;
 }
 
+.hero-logo-overlay {
+  position: absolute;
+  top: 32px;
+  left: 32px;
+  z-index: 6;
+  pointer-events: none;
+}
+
+.hero-logo-overlay img {
+  width: 180px;
+  height: auto;
+  display: block;
+}
+
+.video-background::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 65%);
+  z-index: 1;
+  pointer-events: none;
+}
+
 .video-background video {
   width: 100%;
   height: 100%;
@@ -171,6 +194,13 @@ body input + label {
   justify-content: left;
   align-items: center;
   padding: 10px 60px;
+  z-index: 5;
+  pointer-events: auto;
+}
+.desktop-nav .nav-links {
+  display: flex;
+  gap: 24px;
+  margin-left: 220px;
 }
 .hidden-header a, .desktop-nav a {
   text-decoration: none;
@@ -198,6 +228,27 @@ body input + label {
   --p: 100%;
 }
 
+.mobile-nav-links,
+.mobile-hours {
+  list-style-type: none;
+  padding: 0;
+  margin: 12px 0;
+  white-space: normal;
+  text-align: center;
+}
+
+.mobile-nav-links li,
+.mobile-hours li {
+  font-size: 1.2em;
+  margin-bottom: 6px;
+}
+
+.mobile-nav-links a {
+  text-decoration: none;
+  color: #020304;
+  font-weight: 600;
+}
+
 nav ul {
   list-style-type: none;  /* Remove default list bullets */
   padding: 0;  /* Remove default padding */
@@ -207,12 +258,18 @@ nav li {
   font-size: 1.5em;  /* Increase the font size */
   font-weight: bold;  /* Make the text bolder */
   margin-bottom: 5px;  /* Spacing between the lines for readability */
-  white-space: nowrap;
+  white-space: normal;
+}
+
+@media (max-width: 600px) {
+  nav li {
+    font-size: 1.2em;
+  }
 }
 nav ul {
   list-style-type: none;
   padding: 0;
-  white-space: nowrap;
+  white-space: normal;
 }
 
 .hidden-header #logo, .desktop-nav #logo {
@@ -228,6 +285,23 @@ nav ul {
 
 
 @media (max-width: 767px) {
+  .desktop-nav {
+    display: none;
+  }
+  .hero-logo-overlay {
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .video-background {
+    min-height: 90vh;
+  }
+  .overlay-content {
+    padding: 60px 20px;
+  }
+  .centered-image {
+    max-width: 55%;
+  }
   body {
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -237,15 +311,42 @@ nav ul {
   .desktop-nav .logo-desktop {
     display: none;
   }
+  .desktop-nav .nav-links {
+    display: none;
+  }
   .logo-container {
     display: block; /* Makes the logo container visible */
-    position: fixed; /* Positions the logo container */
-
+    position: fixed; /* Pins to viewport when active */
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 4px 14px;
+    background: transparent;
+    box-shadow: none;
+    border-bottom: none;
+    display: flex;
+    align-items: center;
     z-index: 5; /* Ensures it's above other elements */
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.35s ease, opacity 0.35s ease;
+  }
+
+  .logo-container.is-visible {
+    transform: translateY(0);
+    opacity: 1;
+    background: rgba(255,255,255,0.98);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+
+  .hero-logo-overlay img {
+    width: 140px;
   }
 
   #logo img {
-    max-width: 130px; /* Adjusts the logo size, change as needed */
+    max-width: 92px; /* Adjusts the logo size, change as needed */
   }
       /* Ensure the hidden header stays hidden */
   .hidden-header {
@@ -258,10 +359,10 @@ nav ul {
   body input + label {
     display: block;
     position: fixed;
-    top: 40px;
-    right: 40px;
-    height: 20px;
-    width: 15px;
+    top: 32px;
+    right: 20px;
+    height: 18px;
+    width: 16px;
     z-index: 5;
   }
 
@@ -310,19 +411,22 @@ nav ul {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100px;
-    z-index: 3;
+    height: 0;
+    z-index: 4;
+    padding-top: 0;
     transition: 0.5s;
     transition-delay: 0.5s;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
   body input ~ nav > ul {
     text-align: center;
-    position: absolute;
-    top: 35%;
-    left: 20%;
-    right: 20%;
+    position: static;
+    margin: 12px 0;
   }
 
   body input ~ nav > ul > li {
@@ -345,6 +449,8 @@ nav ul {
   body input:checked ~ nav {
     height: 100%;
     transition-delay: 0s;
+    z-index: 4;
+    padding-top: 80px; /* Leaves room for fixed logo header */
   }
 
   body input:checked ~ nav > ul > li {
@@ -358,15 +464,28 @@ nav ul {
   }
 
   #logo {
-    position: absolute;
-    top: -1.5px; /* Adjust as required */
-    left: 0px; /* Adjust as required */
-    max-width: 120px;
+    position: static;
+    max-width: 110px;
   }  
   .logo-desktop{
     display: block;
   }
 
+}
+
+@media (max-width: 600px) {
+  .text-section h2 {
+    font-size: 1.7rem;
+  }
+  .text-section p {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .cta-panel {
+    padding: 50px 16px;
+  }
 }
 
 @media (min-width: 768px) {
@@ -384,12 +503,14 @@ nav ul {
 
 
 /*Slider*/
+
 .content-container {
   display: flex; /* use Flexbox */
   justify-content: space-between; /* space between .text-section and .pen */
   align-items: center; /* vertically align children */
-  padding-left: 200px; /* add some padding */
+  padding: 40px 80px 0 120px;
   text-align: justify;
+  gap: 40px;
 }
 .content-container .text-section {
   text-align: justify;
@@ -399,6 +520,16 @@ nav ul {
 .content-container .text-section h2 {
   font-size: 2em;
   font-weight: 600; /* Makes the text thicker */
+}
+
+.text-section h2.no-break-title {
+  font-size: clamp(1.3rem, 6vw, 2em);
+}
+
+@media (max-width: 600px) {
+  .text-section h2.no-break-title {
+    white-space: nowrap;
+  }
 }
 
 .content-container .text-section p {
@@ -417,8 +548,8 @@ nav ul {
   flex: 1;
   max-width: 50%;
   width: 100%;
-  margin: 50px auto 0;
-  margin-bottom: 50px;
+  margin: 24px auto 0;
+  margin-bottom: 80px;
   opacity: 0;
   position: relative;
   -webkit-transition: all 0.25s ease-in-out;
@@ -453,6 +584,8 @@ nav ul {
   height: inherit;
   margin: 0 7px 0 0;
   display: inline-block;
+  border: none;
+  cursor: pointer;
   -webkit-transition: all 0.25s ease-in-out;
   -moz-transition: all 0.25s ease-in-out;
   -ms-transition: all 0.25s ease-in-out;
@@ -514,21 +647,34 @@ nav ul {
     height: 600px;
   }
 }
-@media all and (max-width: 660px) {
-  .pen {
-    max-width: 335px;
+
+@media (max-width: 768px) {
+  .stage {
+    height: 320px;
+    max-width: 100%;
+    overflow: hidden;
   }
   .element {
-    width: 101px;
+    flex: 1 1 33%;
+    width: auto;
+    min-width: 0;
+    margin: 0 6px 0 0;
+    border-radius: 16px;
   }
-  .element.inactive {
-    width: 61px;
+  .element:last-of-type {
+    margin-right: 0;
   }
   .element.active {
-    width: 181px;
+    flex: 1.35 1 45%;
   }
-  .stage {
-    max-width: 335px;
+  .element.inactive {
+    flex: 0.85 1 25%;
+    opacity: 0.65;
+  }
+  .pen {
+    max-width: 100%;
+    margin: 16px auto 0;
+    margin-bottom: 70px;
   }
 }
 @-webkit-keyframes appear {
@@ -566,16 +712,33 @@ nav ul {
 @media (max-width: 1000px) {
   .content-container {
     flex-direction: column; /* Change to stack children vertically */
-    padding-left: 0; /* Reset the left padding */
+    padding: 0 20px; /* Reset the left padding */
     align-items: center; /* Center the content horizontally */
     justify-content: center; /* Center the content vertically */
+    text-align: left;
+  }
+
+  .cta-content h3 {
+    font-size: 1.8rem;
+  }
+  .cta-actions {
+    flex-direction: column;
+  }
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
   }
 
   .text-section {
     padding-right: 0; /* Remove the right padding */
-    text-align: center; /* Center the text */
+    text-align: left; /* Prevent large word spacing on narrow widths */
     width: 100%; /* Take the full width */
-    margin-bottom: 20px; /* Add some space below the text section */
+    margin-bottom: 0px; /* Add some space below the text section */
+    font-size: 1rem;
+  }
+  .text-section p {
+    text-align: left;
+    hyphens: auto;
   }
 
   .pen {
@@ -614,6 +777,7 @@ nav ul {
   width: 75%;
   height: 90%;
   object-fit: cover;
+  border-radius: 24px;
 }
 
 .video-text-section {
@@ -621,7 +785,7 @@ nav ul {
   flex-direction: column;  /* Makes items stack vertically */
   flex: 1;
   max-width: calc(60% - 70px);
-  align-items: first baseline;
+  align-items: flex-start;
   padding: 0 20px;
   gap: 20px;
 }
@@ -653,16 +817,7 @@ nav ul {
 }
 
 .name-price-container::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: white;
-  z-index: 0;
-  margin-left: calc(100% + 10px);  /* Adjust the margin values as needed */
-  margin-right: 10px;
+  content: none;
 }
 
 
@@ -679,6 +834,12 @@ nav ul {
   background-color: white;
   margin: 5px 10px;
   align-self: bottom; /* Center align the line in relation to name and price */
+}
+
+.video-text-details .description {
+  display: block;
+  width: 100%;
+  margin-top: 8px;
 }
 
 .name::after {
@@ -723,6 +884,23 @@ nav ul {
   }
 }
 
+@media (max-width: 768px) {
+  .video-text-section {
+    gap: 16px;
+  }
+  .name-price-container {
+    flex-wrap: wrap;
+    align-items: flex-end;
+  }
+  .line {
+    display: block;
+    min-width: 40px;
+  }
+  .video-text-details .description {
+    margin-top: 10px;
+  }
+}
+
 
 /* scrolling banner*/
 .scrolling-banner {
@@ -743,12 +921,176 @@ nav ul {
   animation: scrollLeft 40s linear infinite;  /* Apply the animation */
 }
 
+.cta-panel {
+  background: #fff;
+  padding: 60px 20px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.cta-content {
+  max-width: 720px;
+}
+
+.cta-content h3 {
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+}
+
+.cta-content p {
+  font-size: 1.2rem;
+  margin-bottom: 25px;
+}
+
+.cta-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-primary,
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 28px;
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, rgb(218,145,0) 0%, rgb(200,130,0) 100%);
+  color: #fff;
+  box-shadow: 0 10px 25px rgba(218,145,0,0.35);
+}
+
+.btn-secondary {
+  border: 2px solid rgb(218,145,0);
+  color: rgb(218,145,0);
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+  transform: translateY(-3px);
+}
+
+.map-button {
+  margin: 15px 0 25px;
+}
+
 @keyframes scrollLeft {
   0% {
     transform: translateX(0);
   }
   100% {
     transform: translateX(-100%);  /* Move the text the entire width of itself to the left */
+  }
+}
+
+.style-marquee {
+  background: #fdfaf5;
+  padding: 90px 0 50px;
+  color: #0c0c0c;
+}
+
+.style-marquee-header {
+  max-width: 780px;
+  padding: 0 60px 36px;
+}
+
+.style-marquee .eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+  font-size: 0.8rem;
+  color: rgb(218,145,0);
+  margin-bottom: 14px;
+  display: inline-block;
+}
+
+.style-marquee-header h2 {
+  font-size: clamp(2rem, 5vw, 2.9rem);
+  margin: 0 0 14px 0;
+  font-weight: 600;
+}
+
+.style-marquee-header p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin: 0;
+  max-width: 640px;
+}
+
+.style-marquee-window {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+}
+
+.style-marquee-track {
+  --marquee-duration: 52s;
+  display: flex;
+  gap: 28px;
+  animation: scrollCards var(--marquee-duration) linear infinite;
+  padding: 0 60px;
+  will-change: transform;
+}
+.style-marquee-card {
+  flex: 0 0 360px;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 20px 45px rgba(0,0,0,0.15);
+  margin: 12px 0;
+  pointer-events: none;
+}
+.style-marquee-card img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  display: block;
+}
+
+@keyframes scrollCards {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+@media (max-width: 900px) {
+  .style-marquee-track {
+    gap: 20px;
+    padding: 0 30px;
+    --marquee-duration: 44s;
+  }
+  .style-marquee-header {
+    padding: 0 30px 28px;
+  }
+  .style-marquee-card {
+    flex-basis: 300px;
+  }
+}
+
+@media (max-width: 600px) {
+  .style-marquee {
+    padding: 60px 0 30px;
+  }
+  .style-marquee-header {
+    padding: 0 20px 24px;
+  }
+  .style-marquee-card {
+    flex-basis: 220px;
+  }
+  .style-marquee-card img {
+    height: 240px;
+  }
+  .style-marquee-track {
+    --marquee-duration: 32s;
+    animation-timing-function: linear;
   }
 }
 
@@ -783,45 +1125,25 @@ nav ul {
   max-width: 520px;
 }
 
-.map-wrapper iframe {
-  border: none;
+#map {
+  border-radius: 24px;
+  overflow: hidden;
   width: 100%;
   height: 100%;
   aspect-ratio: 1;
-  border-radius: 24px;
-  overflow: hidden;
-  filter: grayscale(1) invert(1) contrast(1.15) brightness(0.85);
+  min-height: 500px;
   box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
   transition: transform 0.45s ease, filter 0.45s ease;
-  min-height: 500px;
+  filter: brightness(0.98) contrast(1.05);
 }
 
-.map-wrapper iframe:hover {
+#map:hover {
   transform: translateY(-6px);
-  filter: grayscale(1) invert(1) contrast(1.25) brightness(0.95);
+  filter: brightness(0.98) contrast(1.15);
 }
 
-.map-pin {
-  position: absolute;
-  left: 65px;
-  bottom: 20px;
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 20px;
-  border-radius: 999px;
-  background: linear-gradient(135deg, rgb(218,145,0) 0%, rgb(200,130,0) 100%);
-  border: 2px solid rgba(255, 255, 255, 0.9);
-  color: #ffffff;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.35), 0 0 20px rgba(218,145,0,0.4);
-  pointer-events: none;
-}
-
-.map-pin i {
-  color: #ffffff;
-  font-size: 1.4rem;
+.leaflet-control-attribution {
+  font-size: 0.7rem;
 }
 
 .info-section {
@@ -866,17 +1188,11 @@ nav ul {
     max-width: 100%;
   }
 
-  .map-wrapper iframe {
-    margin: 10px 0; /* Adjust margin around iframe for better spacing */
+  .map-wrapper #map {
+    margin: 10px 0; /* Adjust margin around map for better spacing */
     width: 100%;
     aspect-ratio: 4 / 3;
-  }
-
-  .map-pin {
-    left: 20px;
-    right: 20px;
-    bottom: 20px;
-    justify-content: center;
+    min-height: 320px;
   }
 
   .info-section {
@@ -896,6 +1212,19 @@ nav ul {
   }
 }
 
+@media (max-width: 600px) {
+  .map-container {
+    padding: 20px;
+  }
+  #map {
+    min-height: 260px;
+    border-radius: 18px;
+  }
+  .info-section {
+    padding: 20px 10px;
+  }
+}
+
 
 /*pictures*/
 /* Existing styles for larger screens */
@@ -908,6 +1237,8 @@ nav ul {
   max-width: auto;
   position: relative;
   background-color: black;
+  padding: 40px 30px;
+  margin: 40px auto;
 }
 .pictures-grid img {
   width: 100%;
@@ -928,8 +1259,16 @@ nav ul {
 /* Media query for screens smaller than 1000px */
 @media (max-width: 1000px) {
   .pictures-grid {
-    grid-template-columns: repeat(1, 1fr); /* 2 columns */
-    grid-template-rows: repeat(4, 1fr);   /* 4 rows */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding: 30px 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .pictures-grid {
+    grid-template-columns: repeat(1, 1fr);
+    padding: 24px 16px;
   }
 }
 
@@ -938,7 +1277,7 @@ footer {
   width: 100%;
   background-color: black;
   color: white;
-  padding-bottom: 100px;
+  padding: 60px 0 80px;
 }
 
 .footer-logo img {
@@ -1030,4 +1369,10 @@ footer {
   background-color: black;
   height: 40px;
   width: 40px; 
+}
+
+@media (max-width: 600px) {
+  .social-logos {
+    display: none;
+  }
 }

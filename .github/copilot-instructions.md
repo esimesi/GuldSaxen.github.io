@@ -1,109 +1,36 @@
-# Guldsaxen Barbershop Website - AI Development Guide
+# Guldsaxen Barbershop – AI Guide
 
-## Project Overview
-Single-page barbershop website for Guldsaxen in Umeå, Sweden. Static site hosted on GitHub Pages with Swedish content, featuring video backgrounds, interactive elements, and mobile-responsive design.
+## Snabb överblick
+- Single-page site (`index.html`, `lang="sv"`) served from `main` via GitHub Pages + custom domain in `CNAME` (`xn--guldsaxenume-4cb.se`).
+- Visual identity = twin background videos (`video-background/`), gold accent via `.Guldsaxen`, Kanit font loaded from Google Fonts; keep **all copy in Swedish** with clear drop-in messaging.
+- No build tooling. Open `index.html` locally for feedback, test responsive breakpoints (1000px, 768px, 660px) and hover behaviors.
 
-## Architecture & Structure
+## Nyckelfiler & tillgångar
+- `index.html`: Entire layout from hero video → slider → prislista → karta → galleri → footer + fixed social icons (`.social-logos`).
+- `index.css`: Single global stylesheet; section-specific rules followed by media queries for tablet/mobile; don’t split this file.
+- `index.js`: jQuery 3.5.1 (via CDN) powers slider hover classes and scroll-triggered header reveal; avoid vanilla rewrites unless replacing script entirely.
+- Assets live under `icons/`, `pictures/`, `video-background/`; filenames are referenced directly in markup/CSS so retain existing paths/casing.
 
-### Core Files (Root Level)
-- `index.html` - Single-page site structure (Swedish language, `lang="sv"`)
-- `index.css` - All styles in one file using Kanit font family throughout
-- `index.js` - jQuery-based interactions for slider and scroll header
-- `CNAME` - Custom domain: `xn--guldsaxenume-4cb.se`
+## UI-mönster att respektera
+- Navigation: desktop `.desktop-nav` fixed at `top: 28px`; mobile uses checkbox `#burger` + overlay `<nav>`. `.hidden-header` slides in after 700px scroll (desktop only) via `show-header` class.
+- Slider: `.content-container .stage` holds three `.element` panels (`.hair/.beard/.product`); JS toggles `.active/.inactive` width states, CSS sets breakpoints (900px, default, 660px). Add panels only if you also update widths/media queries.
+- Prislistan (`.video-text-container`): each service uses `.video-text-details` + `.name-price-container` + `.line`. Keep services grouped and price copy in SEK (e.g. `279 KR`).
+- Hero overlays: `<video autoplay muted loop playsinline>` with `.gradient-overlay` + `.overlay-content` stacking; centered image `pictures/professionella.png` must remain pointer-events: none.
+- Map/contact block: `iframe` embed scoped by `.map-wrapper`; grayscale/invert filters give branded look—maintain when swapping map URLs.
 
-### Asset Organization
-- `icons/` - Logos and social media icons (barber-logo.png, facebook.png, instagram.png, etc.)
-- `pictures/` - Gallery images and slider backgrounds (hår.jpg, Skägg.jpg, produkter.jpg)
-- `video-background/` - Hero videos (barbershop-background.mp4, Secondvid.mp4)
+## Innehållsregler
+- Business facts are fixed: address `Skolgatan 58B, 903 27 Umeå`, phone `090 - 3409995`, hours `Mån-Fre 10:00-18:00`, `Lör 10:00-15:00`, `Sön Stängt`, socials Instagram `@guldsaxen_umea` + Facebook link.
+- “Drop-in” policy is reiterated in hero text and scrolling banner (`.scrolling-banner`). Any new messaging must reinforce no-booking stance.
+- Gallery descriptions are intentionally blank; don’t add captions unless every image gets one.
 
-## Key Design Patterns
+## Vanliga ändringar
+- **Nya tjänster/priser**: duplicate an existing `.video-text-details` block, keep Swedish description and align price formatting (`XXX KR`).
+- **Uppdatera bilder**: replace files in `pictures/` (slider backgrounds referenced in CSS) or `icons/`; ensure identical filenames or update both HTML and CSS.
+- **Navigationsjustering**: desktop links currently logo-only; add anchors inside `.header-links` and `.desktop-nav` for consistency, and ensure both mobile/desktop navs share the same items.
 
-### Responsive Navigation (Desktop vs Mobile)
-Two separate navigation systems:
-- **Desktop** (>768px): `.desktop-nav` with fixed positioning at `top: 28px`
-- **Mobile** (≤767px): Hamburger menu (`#burger` checkbox) revealing overlay nav with white background
-- Scroll-triggered header (`.hidden-header`) appears after `700px` scroll on desktop only
-
-### Interactive Slider Component
-Located in `.content-container` with `.stage` element:
-- jQuery hover interactions add `.active` (widens) and `.inactive` (narrows/fades) classes
-- Three slides: `.hair`, `.beard`, `.product` with background images from `pictures/`
-- Responsive breakpoints: 900px (large), default (medium), 660px (small)
-
-### Video Handling
-Full-viewport hero section (`.video-background`) with:
-- `autoplay muted loop playsinline` attributes for mobile compatibility
-- `.gradient-overlay` (z-index: 1) and `.overlay-content` (z-index: 2) layering
-- Centered image overlay (`.centered-image`) using absolute positioning + transform
-
-### Pricing Display Pattern
-`.video-text-container` with flex layout (black background):
-- `.name-price-container` uses flexbox with connecting line via `::before` pseudo-element
-- `.line` element creates dotted separator between service name and price
-- Services: Klippning (279 KR), Student/Barn/Pensionär (229 KR), Skägg (200 KR)
-
-## Critical Conventions
-
-### CSS Organization
-- All styles in single `index.css` file (no separate modules)
-- Media queries at end of each section: 1000px (tablet), 768px (mobile), 660px (small mobile)
-- Brand color: `rgb(218,145,0)` applied via `.Guldsaxen` class for gold accent
-- Kanit font family used universally (loaded from Google Fonts)
-
-### Content Language & Business Info
-**All user-facing text MUST be in Swedish**. Key details:
-- Business name: "Guldsaxen" 
-- Address: Skolgatan 58B, 903 27 Umeå
-- Phone: 090 - 3409995
-- Hours: Mån-Fre 10:00-18:00, Lör 10:00-15:00, Sön Stängt
-- Social: Instagram (@guldsaxen_umea), Facebook
-
-### Drop-in Policy
-No booking system - all messaging emphasizes walk-in/drop-in service. Scroll banner states: "Hos oss behövs ingen bokning. Drop-in när du har tid."
-
-## Development Workflow
-
-### Local Development
-No build process - open `index.html` directly in browser. Test responsive breakpoints at 1000px, 768px, 660px.
-
-### Dependencies
-External CDNs (no package.json):
-- jQuery 3.5.1: `https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js`
-- Font Awesome 5.15.3: `https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css`
-- Google Fonts (Kanit): `https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap`
-
-### Testing Checklist
-1. Video autoplay on mobile (iOS Safari requires `playsinline`)
-2. Hamburger menu toggle (checkbox state controls nav visibility)
-3. Slider hover states (`.active`/`.inactive` transitions)
-4. Fixed social icons (`.social-logos`) visible at right edge on scroll
-5. Responsive layout shifts at 1000px, 768px, 660px breakpoints
-
-## Common Tasks
-
-### Adding New Service/Price
-Edit `.video-text-section` in `index.html`:
-```html
-<div class="video-text-details">
-    <div class="name-price-container">
-        <span class="name">Service Name</span>
-        <div class="line"></div>
-        <span class="price">XXX KR</span>
-    </div>
-    <span class="description">Swedish description here.</span>
-</div>
-```
-
-### Updating Gallery Images
-Replace files in `pictures/` directory. Gallery uses `.pictures-grid` (4 columns desktop, 1 column mobile). Images auto-scale with `object-fit: cover`.
-
-### Modifying Breakpoints
-Search for `@media` queries in `index.css`. Primary breakpoints: 1000px (layout shifts), 768px (nav toggle), 660px (slider sizing).
-
-## Gotchas & Quirks
-
-- **No README**: Project context only in code/comments
-- **Hardcoded API Key**: Google Maps iframe has placeholder `DITT_API_NYCKEL` in `index.html`
-- **Duplicate Images**: Gallery repeats some images (IMG-20230817-WA0002.jpg, IMG-20230817-WA0006.jpg appear twice)
-- **Manual Mobile Detection**: Uses `@media` only, no JS device detection
-- **OneDrive Path**: Local workspace path includes "Höglandsförbundet" organization folder
+## Testa innan commit
+- Manually scroll 0→1000px to confirm hidden header triggers correctly and doesn’t show on mobile widths (<768px).
+- Hover each slider panel to verify `.active/.inactive` transitions and that widths return on mouseleave.
+- Toggle hamburger (mobile viewport) to ensure checkbox-driven nav opens/closes and doesn’t overlap the logo.
+- Confirm both hero and secondary videos autoplay/mute/loop on desktop + mobile (playsinline attribute is critical for iOS).
+- Verify fixed social icons and map pin remain clickable after any z-index/layout tweaks.
