@@ -1142,6 +1142,10 @@ nav ul {
   filter: brightness(0.98) contrast(1.15);
 }
 
+#map .leaflet-tile {
+  filter: grayscale(1);
+}
+
 .leaflet-control-attribution {
   font-size: 0.7rem;
 }
