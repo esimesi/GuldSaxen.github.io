@@ -1,324 +1,341 @@
 <!DOCTYPE html>
 <html lang="sv">
-
 <head>
-    <link rel="icon" href="icons/Guld saxen.png" type="image/png">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha512-Zcn6bjR/8RZbLEpLIeOwNtzREBAJnUKESxces60Mpoj+2okopSAcSUIUOseddDm0cxnGQzxIR7vJgsLZbdLE3w==" crossorigin="" />
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Guldsaxen i Umeå erbjuder drop-in klippning, skägg och grooming på Skolgatan 58B – välkommen in utan bokning!">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#11110f">
+    <meta name="description" content="Guldsaxen i Umeå – professionell klippning, skäggvård och trådning. Inga bokningar, kom in på drop-in när det passar dig.">
+    <title>Guldsaxen | Barbershop i Umeå</title>
+    <link rel="icon" href="icons/Guld saxen.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="index.css">
-    <title>Guldsaxen Barbershop – Drop-in i Umeå</title>
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Barbershop",
-        "name": "Guldsaxen",
-        "image": "https://xn--guldsaxenume-4cb.se/icons/barber-logo.png",
-        "telephone": "+46903409995",
-        "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "Skolgatan 58B",
-            "addressLocality": "Umeå",
-            "postalCode": "903 27",
-            "addressCountry": "SE"
-        },
-        "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": 63.826851337015796,
-            "longitude": 20.26223015911486
-        },
-        "openingHoursSpecification": [
-            {"@type": "OpeningHoursSpecification","dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens": "10:00","closes": "18:00"},
-            {"@type": "OpeningHoursSpecification","dayOfWeek": ["Saturday"],"opens": "10:00","closes": "15:00"}
-        ],
-        "url": "https://xn--guldsaxenume-4cb.se/",
-        "sameAs": [
-            "https://www.facebook.com/people/Guldsaxen/61563805727143/",
-            "https://www.instagram.com/guldsaxen_umea/"
-        ]
-    }
-    </script>
+    <script src="index.js" defer></script>
 </head>
-
 <body>
-    <div class="logo-container">
-        <div id="logo">
-            <img src="icons/barber-logo.png" alt="Logo">
-        </div>
-    </div>
-    
-    <!-- Video Background Section -->
-    <section class="video-background" id="hero">
-        <div class="main-page">
-            <video autoplay muted loop playsinline id="videoBackground">
-                <source src="video-background/barbershop-background.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <div class="hero-logo-overlay">
-                <img src="icons/barber-logo.png" alt="Guldsaxen logo" width="200" height="120">
-            </div>
-            <div class="gradient-overlay"></div>
-            <div class="overlay-content">
-              <img src="pictures/professionella.png" alt="Guldsaxen" class="centered-image">
-            </div>
-        </div>
-    </section>
+    <a class="skip-link" href="#main-content">Hoppa till innehållet</a>
 
-    <div id="scrollingHeader" class="hidden-header">
-        <div class="header-content">
-            <div class="header-links">
-                <a href="#hero">Hem</a>
-                <a href="#tjanster">Tjänster</a>
-                <a href="#karta">Karta</a>
-                <a href="#galleri">Galleri</a>
-                <a href="#karta">Kontakt</a>
-            </div>
-            <div class="header-logo">
-                <img src="icons/barber-logo.png" alt="Your Logo">
-            </div>
-        </div>
-    </div>
-    
-    
-    <!-- Hamburger Menu for Smaller Screens -->
-    <input id="burger" type="checkbox" />
-    <label for="burger">
-        <span></span>
-        <span></span>
-        <span></span>
-    </label>
-    <nav>
-        <ul class="mobile-nav-links">
-            <li><a href="#hero">Hem</a></li>
-            <li><a href="#tjanster">Tjänster</a></li>
-            <li><a href="#karta">Karta</a></li>
-            <li><a href="#galleri">Galleri</a></li>
-            <li><a href="#karta">Kontakt</a></li>
-        </ul>
-        <ul class="mobile-hours">
-            <li><strong>Öppettider</strong></li>
-            <li>Mån - Fre: 10:00 - 18:00</li>
-            <li>Lör: 10:00 - 15:00</li>
-            <li>Sön: Stängt</li>
-        </ul>
-    </nav>
+    <header class="site-header" id="siteHeader">
+        <a class="brand" href="#hem" aria-label="Guldsaxen – till startsidan">
+            <span class="brand-name">Guld<span>saxen</span></span>
+            <span class="brand-tagline">Barbershop · Umeå</span>
+        </a>
 
-    <div class="desktop-nav">
-        <div id="logo" class="logo-desktop">
-            <img src="icons/barber-logo.png" alt="Logo">
-        </div>
-        <div class="nav-links">
-            <a href="#hero">Hem</a>
-            <a href="#tjanster">Tjänster</a>
-            <a href="#karta">Karta</a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="siteNav" aria-label="Öppna meny">
+            <span></span>
+            <span></span>
+        </button>
+
+        <nav class="site-nav" id="siteNav" aria-label="Huvudmeny">
+            <a href="#om-oss">Om oss</a>
+            <a href="#tjanster">Tjänster & priser</a>
             <a href="#galleri">Galleri</a>
-            <a href="#karta">Kontakt</a>
-        </div>
-    </div>
-    
-    <!-- slider section -->
-    <div  class="content-container" id="tjanster-intro">
-        <div class="text-section">
-            <!-- Place your text content here -->
-            <h2 class="no-break-title">Inga Bokningar Behövs!</h2>
-            <p>Här på <span class="Guldsaxen">Guld</span>saxen, tror vi på spontanitet och flexibilitet. Vi erbjuder inte bokningstjänster, istället välkomnar vi våra kunder på drop-in basis. Så oavsett om du känner för en snabb trimning eller en komplett omgestaltning, kom bara in när det passar dig bäst. Vårt professionella team är redo att ta hand om dina behov.</p>
-        </div>
-        <section class="pen" aria-label="Tjänsteöversikt">
-            <div class="stage">
-                <button class="element hair" type="button" data-slide="0" aria-label="Hår"></button>
-                <button class="element beard" type="button" data-slide="1" aria-label="Skägg"></button>
-                <button class="element product" type="button" data-slide="2" aria-label="Produkter"></button>
+            <a href="#hitta-hit">Hitta hit</a>
+            <a class="nav-phone" href="tel:+46903409995">090 - 340 99 95</a>
+        </nav>
+
+        <a class="header-cta" href="#hitta-hit">Drop-in <span aria-hidden="true">↗</span></a>
+    </header>
+
+    <main id="main-content">
+        <section class="hero" id="hem" aria-labelledby="hero-title">
+            <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="pictures/IMG-20230817-WA0002.jpg" aria-hidden="true">
+                <source src="video-background/barbershop-background.mp4" type="video/mp4">
+            </video>
+            <div class="hero-shade"></div>
+            <div class="hero-content shell">
+                <p class="eyebrow light"><span></span> Din barbershop i Umeå</p>
+                <h1 id="hero-title">Din stil.<br><em>Vårt hantverk.</em></h1>
+                <p class="hero-intro">Professionell klippning utan krångel.<br>Ingen bokning – kom in när det passar.</p>
+                <div class="hero-actions">
+                    <a class="button button-gold" href="#tjanster">Se våra priser <span aria-hidden="true">↓</span></a>
+                    <a class="text-link light" href="#hitta-hit">Hitta till salongen <span aria-hidden="true">↗</span></a>
+                </div>
+            </div>
+            <div class="hero-bottom shell">
+                <div class="dropin-badge"><span class="status-dot"></span> Alltid drop-in</div>
+                <p>Mån–fre 10–18 <span>·</span> Lör 10–15</p>
+                <a href="#om-oss" class="scroll-cue" aria-label="Scrolla till om oss">Upptäck mer <span aria-hidden="true">↓</span></a>
             </div>
         </section>
-    </div>
 
-    
-    <div class="video-text-container" id="tjanster">
-        <div class="video-section">
-            <video autoplay muted loop playsinline>
-                <source src="video-background/Secondvid.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
-        <div class="video-text-section">
-            <div class="video-text-details">
-                <div class="name-price-container">
-                    <span class="name">Klippning</span>
-                    <div class="line"></div>
-                    <span class="price">279 KR</span>
+        <section class="intro section" id="om-oss">
+            <div class="shell">
+                <div class="section-heading reveal">
+                    <p class="eyebrow"><span></span> Välkommen till Guldsaxen</p>
+                    <h2>Kom in som du är.<br><em>Lämna med självförtroende.</em></h2>
                 </div>
-                <span class="description">Exakt klippning för ett nytt utseende.</span>
-            </div>
-            <div class="video-text-details">
-                <div class="name-price-container">
-                    <span class="name">Student</span>
-                    <div class="line"></div>
-                    <span class="price">229 KR</span>
-                </div>
-                <span class="description">Samma service, lite billigare för studenter.</span>
-            </div>
-            <div class="video-text-details">
-                <div class="name-price-container">
-                    <span class="name">Barn</span>
-                    <div class="line"></div>
-                    <span class="price">229 KR</span>
-                </div>
-                <span class="description">Samma service, lite billigare för barn.</span>
-            </div>
-            <div class="video-text-details">
-                <div class="name-price-container">
-                    <span class="name">Pensionär</span>
-                    <div class="line"></div>
-                    <span class="price">229 KR</span>
-                </div>
-                <span class="description">Samma service, lite billigare för pensionärer.</span>
-            </div>
-            <div class="video-text-details">
-                <div class="name-price-container">
-                    <span class="name">Skägg</span>
-                    <div class="line"></div>
-                    <span class="price">200 KR</span>
-                </div>
-                <span class="description">Skäggperfektion, varje gång.</span>
-            </div>
-            <div class="video-text-details">
-                <div class="name-price-container">
-                    <span class="name">Långt hår</span>
-                    <div class="line"></div>
-                    <span class="price">99 KR</span>
-                </div>
-                <span class="description">Klippning av långt hår, exakt och stilfullt.</span>
-            </div>
-            <div class="video-text-details">
-                <div class="name-price-container">
-                    <span class="name">Trådning</span>
-                    <div class="line"></div>
-                    <span class="price">200 KR</span>
-                </div>
-                <span class="description">Professionell trådning för perfekt form.</span>
-            </div>
-        </div>
-    </div>
-    
-    <!--Scrolling banner-->
-    <div class="scrolling-banner">
-        <div class="banner-text">Hos oss behövs ingen bokning. Drop-in när du har tid.</div>
-    </div>
-
-    <section class="cta-panel">
-        <div class="cta-content">
-            <h3>Redo för en ny look?</h3>
-            <p>Välkommen in på drop-in! Vårt team står redo varje dag för snabba klippningar, skäggtrim och styling utan krångel.</p>
-            <div class="cta-actions">
-                <a class="btn-primary" href="#karta">Hitta oss</a>
-                <a class="btn-secondary" href="tel:0903409995">Ring 090 - 3409995</a>
-            </div>
-        </div>
-    </section>
-
-
-    <!--Map and contacts-->
-    <div class="parent-of-map-container" id="karta">
-        <div class="map-container">
-            <div class="map-wrapper">
-                <div id="map" aria-label="Karta över Guldsaxen" role="presentation"></div>
-            </div>
-            <div class="info-section">
-                <h2>Hitta oss</h2>
-                <p>Vår butik ligger i hjärtat av staden, enkelt att nå och mitt i all stadens puls. En perfekt plats för dig som vill ha högkvalitativa frisörtjänster mitt i centrum</p>
-                <a class="btn-primary map-button" href="https://www.google.com/maps/dir/?api=1&destination=63.826851337015796,20.26223015911486" target="_blank" rel="noopener noreferrer">Visa vägbeskrivning</a>
-                <div class="details-section">
-                    <div class="contact-details">
-                        <h3>Kontakt</h3>
-                        <p>Adress: Skolgatan 58B, 903 27 Umeå</p>
-                        <p>Telefon: 090 - 3409995</p>
+                <div class="intro-grid">
+                    <div class="intro-copy reveal">
+                        <h3>Inga bokningar behövs!</h3>
+                        <p>Här på <strong>Guldsaxen</strong> tror vi på spontanitet och flexibilitet. Vi erbjuder inte bokningstjänster, istället välkomnar vi våra kunder på drop-in basis.</p>
+                        <p>Så oavsett om du känner för en snabb trimning eller en komplett omgestaltning, kom bara in när det passar dig bäst. Vårt professionella team är redo att ta hand om dina behov.</p>
+                        <a class="text-link" href="#hitta-hit">Kom förbi oss <span aria-hidden="true">↗</span></a>
                     </div>
-                    <div class="opening-times">
-                        <h3>Öppettider</h3>
-                        <p>Mån - Fre: 10:00 - 18:00</p>
-                        <p>Lör: 10:00 - 15:00</p>
-                        <p>Sön: Stängt</p>
+                    <div class="intro-note reveal">
+                        <span class="large-number">01</span>
+                        <p>Ingen tidsbokning.<br>Inget krångel.<br><strong>Bara riktigt bra hår.</strong></p>
+                    </div>
+                </div>
+
+                <div class="craft-grid reveal" aria-label="Våra tjänsteområden">
+                    <figure class="craft-card">
+                        <img src="pictures/hår.jpg" alt="Noggrann hårklippning hos Guldsaxen" loading="lazy">
+                        <figcaption><span>01</span> Hår</figcaption>
+                    </figure>
+                    <figure class="craft-card">
+                        <img src="pictures/Skägg.jpg" alt="Professionell skäggtrimning" loading="lazy">
+                        <figcaption><span>02</span> Skägg</figcaption>
+                    </figure>
+                    <figure class="craft-card">
+                        <img src="pictures/produkter.jpg" alt="Utvalda hår- och skäggprodukter" loading="lazy">
+                        <figcaption><span>03</span> Produkter</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <section class="services section" id="tjanster" aria-labelledby="services-title">
+            <div class="shell services-layout">
+                <div class="services-visual reveal">
+                    <video autoplay muted loop playsinline preload="none" poster="pictures/IMG-20230817-WA0005.jpg" aria-label="Inifrån Guldsaxens barbershop">
+                        <source src="video-background/Secondvid.mp4" type="video/mp4">
+                    </video>
+                    <div class="visual-label"><span>Guldsaxen</span><small>Umeå · Sverige</small></div>
+                </div>
+                <div class="services-content">
+                    <div class="section-heading reveal">
+                        <p class="eyebrow light"><span></span> Tjänster & priser</p>
+                        <h2 id="services-title">Välj din <em>look.</em></h2>
+                        <p class="section-lead">Från den snabba uppfräschningen till en helt ny stil. Alltid med precision och personlig service.</p>
+                    </div>
+                    <div class="price-list reveal">
+                        <article class="price-item">
+                            <div class="service-line"><h3>Klippning</h3><span class="price-dots"></span><p>279 <small>kr</small></p></div>
+                            <p class="service-description">Exakt klippning för ett nytt utseende.</p>
+                        </article>
+                        <article class="price-item">
+                            <div class="service-line"><h3>Student</h3><span class="price-dots"></span><p>229 <small>kr</small></p></div>
+                            <p class="service-description">Samma service, lite billigare för studenter.</p>
+                        </article>
+                        <article class="price-item">
+                            <div class="service-line"><h3>Barn</h3><span class="price-dots"></span><p>229 <small>kr</small></p></div>
+                            <p class="service-description">Samma service, lite billigare för barn.</p>
+                        </article>
+                        <article class="price-item">
+                            <div class="service-line"><h3>Pensionär</h3><span class="price-dots"></span><p>229 <small>kr</small></p></div>
+                            <p class="service-description">Samma service, lite billigare för pensionärer.</p>
+                        </article>
+                        <article class="price-item">
+                            <div class="service-line"><h3>Skägg</h3><span class="price-dots"></span><p>200 <small>kr</small></p></div>
+                            <p class="service-description">Skäggperfektion, varje gång.</p>
+                        </article>
+                        <article class="price-item">
+                            <div class="service-line"><h3>Långt hår</h3><span class="price-dots"></span><p>99 <small>kr</small></p></div>
+                            <p class="service-description">Klippning av långt hår, exakt och stilfullt.</p>
+                        </article>
+                        <article class="price-item">
+                            <div class="service-line"><h3>Trådning</h3><span class="price-dots"></span><p>200 <small>kr</small></p></div>
+                            <p class="service-description">Professionell trådning för perfekt form.</p>
+                        </article>
+                    </div>
+                    <p class="price-note reveal"><span class="status-dot"></span> Inga bokningar – alla tjänster är drop-in.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="statement" aria-label="Hos oss behövs ingen bokning">
+            <div class="statement-track" aria-hidden="true">
+                <span>Kom in. Sätt dig. Känn dig som ny.</span><i>✦</i><span>Ingen bokning. Bara drop-in.</span><i>✦</i>
+                <span>Kom in. Sätt dig. Känn dig som ny.</span><i>✦</i><span>Ingen bokning. Bara drop-in.</span><i>✦</i>
+            </div>
+        </div>
+
+        <section class="inspiration section" id="inspiration" aria-labelledby="inspiration-title">
+            <div class="shell">
+                <div class="inspiration-heading section-heading">
+                    <div>
+                        <p class="eyebrow"><span></span> Inspiration</p>
+                        <h2 id="inspiration-title">Från stolen. <em>Varje dag.</em></h2>
+                    </div>
+                    <div class="inspiration-intro">
+                        <p>Fades, skäggformer, klassiker och trendklipp.<br>Se ett urval av looks vi skapar på Guldsaxen.</p>
+                        <div class="carousel-controls" aria-label="Bläddra bland frisyrer">
+                            <button class="inspiration-prev" type="button" aria-label="Föregående frisyrer">←</button>
+                            <button class="inspiration-next" type="button" aria-label="Nästa frisyrer">→</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    
-    <section class="style-marquee" id="stilar">
-        <div class="style-marquee-header">
-            <p class="eyebrow">Inspiration</p>
-            <h2>Se vad vi skapar varje dag</h2>
-            <p>En jämn ström av fades, skäggformer, klassiker och trendklipp. Här rullar ett urval av looks direkt från stolen.</p>
-        </div>
-        <div class="style-marquee-window" aria-label="Exempel på frisyrer och behandlingar">
-            <div class="style-marquee-track" aria-live="off"></div>
-        </div>
-    </section>
-
-    <!-- pictures-->
-
-    <div class="pictures-grid" id="galleri">
-        
-        <img src="pictures/IMG-20230817-WA0002.jpg" alt="Description 1" loading="lazy" width="600" height="600">
-        <img src="pictures/IMG-20230817-WA0005.jpg" alt="Description 1" loading="lazy" width="600" height="600">
-        <img src="pictures/IMG-20230817-WA0006.jpg" alt="Description 1" loading="lazy" width="600" height="600">
-        <img src="pictures/IMG-20230817-WA0008.jpg" alt="Description 1" loading="lazy" width="600" height="600">
-        <img src="pictures/IMG-20230817-WA0010.jpg" alt="Description 1" loading="lazy" width="600" height="600">
-        <img src="pictures/IMG-20230817-WA0012.jpg" alt="Description 1" loading="lazy" width="600" height="600">
-        <img src="pictures/IMG-20230817-WA0002.jpg" alt="Description 1" loading="lazy" width="600" height="600">
-        <img src="pictures/IMG-20230817-WA0006.jpg" alt="Description 1" loading="lazy" width="600" height="600">
-      
-    </div>
-
-    <!-- footer-->
-    <footer id="kontakt">
-        <div class="footer-logo">
-            <!-- Infoga din logotyp här -->
-            <img src="icons/professionella (1).png" alt="Företagslogotyp" class="footer-logo">
-        </div>
-        
-        <div class="footer-content">
-            <!-- Kontaktsektion till vänster -->
-            <div class="footer-contacts">
-                <h4>Kontakt</h4>
-                <p>Adress: Skolgatan 58B, 903 27 Umeå
-                </p>
-                <p>Telefon: 090 - 3409995</p>
+            <div class="style-carousel" tabindex="0" role="region" aria-label="Exempel på frisyrer och behandlingar">
+                <button class="style-card" type="button" data-gallery-index="0" aria-label="Förstora: Skin fade med tydliga linjer">
+                    <span class="style-image"><img src="cardpics/style-01.jpeg" alt="Skin fade med tydliga linjer" loading="lazy" decoding="async"></span>
+                    <span class="style-caption"><span>01</span> Skin fade</span>
+                </button>
+                <button class="style-card" type="button" data-gallery-index="1" aria-label="Förstora: Klassisk kamfrisyr">
+                    <span class="style-image"><img src="cardpics/style-02.jpeg" alt="Klassisk kamfrisyr" loading="lazy" decoding="async"></span>
+                    <span class="style-caption"><span>02</span> Klassisk klippning</span>
+                </button>
+                <button class="style-card" type="button" data-gallery-index="2" aria-label="Förstora: Snygg taper fade">
+                    <span class="style-image"><img src="cardpics/style-03.jpeg" alt="Snygg taper fade" loading="lazy" decoding="async"></span>
+                    <span class="style-caption"><span>03</span> Taper fade</span>
+                </button>
+                <button class="style-card" type="button" data-gallery-index="3" aria-label="Förstora: Kort fade med textur">
+                    <span class="style-image"><img src="cardpics/style-04.jpeg" alt="Kort fade med textur" loading="lazy" decoding="async"></span>
+                    <span class="style-caption"><span>04</span> Texturerad fade</span>
+                </button>
+                <button class="style-card" type="button" data-gallery-index="4" aria-label="Förstora: High fade och skarp kontur">
+                    <span class="style-image"><img src="cardpics/style-05.jpeg" alt="High fade och skarp kontur" loading="lazy" decoding="async"></span>
+                    <span class="style-caption"><span>05</span> High fade</span>
+                </button>
+                <button class="style-card" type="button" data-gallery-index="5" aria-label="Förstora: Skäggtrim med markerad linje">
+                    <span class="style-image"><img src="cardpics/style-06.jpeg" alt="Skäggtrim med markerad linje" loading="lazy" decoding="async"></span>
+                    <span class="style-caption"><span>06</span> Skägg & kontur</span>
+                </button>
+                <button class="style-card" type="button" data-gallery-index="6" aria-label="Förstora: Raka linjer och korta sidor">
+                    <span class="style-image"><img src="cardpics/style-07.jpeg" alt="Raka linjer och korta sidor" loading="lazy" decoding="async"></span>
+                    <span class="style-caption"><span>07</span> Klassiska linjer</span>
+                </button>
+                <button class="style-card" type="button" data-gallery-index="7" aria-label="Förstora: Modern fade och part">
+                    <span class="style-image"><img src="cardpics/style-08.jpeg" alt="Modern fade och part" loading="lazy" decoding="async"></span>
+                    <span class="style-caption"><span>08</span> Modern fade</span>
+                </button>
+                <button class="style-card" type="button" data-gallery-index="8" aria-label="Förstora: Volym på toppen med fade">
+                    <span class="style-image"><img src="cardpics/style-09.jpeg" alt="Volym på toppen med fade" loading="lazy" decoding="async"></span>
+                    <span class="style-caption"><span>09</span> Volym & fade</span>
+                </button>
+                <button class="style-card" type="button" data-gallery-index="9" aria-label="Förstora: Rakfade med mjuk övergång">
+                    <span class="style-image"><img src="cardpics/style-10.jpeg" alt="Rakfade med mjuk övergång" loading="lazy" decoding="async"></span>
+                    <span class="style-caption"><span>10</span> Mjuk rakfade</span>
+                </button>
+                <button class="style-card" type="button" data-gallery-index="10" aria-label="Förstora: Kreativ designlinje">
+                    <span class="style-image"><img src="cardpics/style-11.jpeg" alt="Kreativ designlinje" loading="lazy" decoding="async"></span>
+                    <span class="style-caption"><span>11</span> Designlinje</span>
+                </button>
+                <button class="style-card" type="button" data-gallery-index="11" aria-label="Förstora: Detaljerad skäggform">
+                    <span class="style-image"><img src="cardpics/style-12.jpeg" alt="Detaljerad skäggform" loading="lazy" decoding="async"></span>
+                    <span class="style-caption"><span>12</span> Skäggform</span>
+                </button>
+                <button class="style-card" type="button" data-gallery-index="12" aria-label="Förstora: Fade med böjd rakning">
+                    <span class="style-image"><img src="cardpics/style-13.jpeg" alt="Fade med böjd rakning" loading="lazy" decoding="async"></span>
+                    <span class="style-caption"><span>13</span> Rakad detalj</span>
+                </button>
             </div>
-    
-            <!-- Sociala medier-sektion i mitten -->
-            <div class="footer-socials">
-                <h4>Följ Oss</h4>
-                <a href="https://www.facebook.com/people/Guldsaxen/61563805727143/?rdid=jiEnTb0MxmbA3nNo&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1DP8qavJRg%2F" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/guldsaxen_umea/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+            <p class="carousel-hint">Svep för att utforska <span aria-hidden="true">→</span></p>
+        </section>
+
+        <section class="gallery section" id="galleri" aria-labelledby="gallery-title">
+            <div class="shell">
+                <div class="gallery-heading section-heading reveal">
+                    <div>
+                        <p class="eyebrow"><span></span> Inifrån salongen</p>
+                        <h2 id="gallery-title">Vår plats. <em>Vår stil.</em></h2>
+                    </div>
+                    <p>En modern salong i hjärtat av Umeå.<br>Ta en titt – eller ännu bättre, kom förbi.</p>
+                </div>
+                <div class="gallery-grid reveal">
+                    <button class="gallery-item gallery-wide" type="button" data-gallery-index="0" aria-label="Förstora bild på salongens arbetsplatser">
+                        <img src="pictures/IMG-20230817-WA0002.jpg" alt="Guldsaxens salong med guldfärgade barberarstolar" loading="lazy">
+                        <span class="gallery-expand" aria-hidden="true">↗</span>
+                    </button>
+                    <button class="gallery-item" type="button" data-gallery-index="1" aria-label="Förstora bild från salongen">
+                        <img src="pictures/IMG-20230817-WA0005.jpg" alt="Detaljer från Guldsaxens moderna salong" loading="lazy">
+                        <span class="gallery-expand" aria-hidden="true">↗</span>
+                    </button>
+                    <button class="gallery-item" type="button" data-gallery-index="2" aria-label="Förstora bild på barberarstol">
+                        <img src="pictures/IMG-20230817-WA0006.jpg" alt="Barberarstol och arbetsplats på Guldsaxen" loading="lazy">
+                        <span class="gallery-expand" aria-hidden="true">↗</span>
+                    </button>
+                    <button class="gallery-item" type="button" data-gallery-index="3" aria-label="Förstora bild på salongens interiör">
+                        <img src="pictures/IMG-20230817-WA0008.jpg" alt="Interiör och speglar inne på Guldsaxen" loading="lazy">
+                        <span class="gallery-expand" aria-hidden="true">↗</span>
+                    </button>
+                    <button class="gallery-item" type="button" data-gallery-index="4" aria-label="Förstora bild på salongens produkter">
+                        <img src="pictures/IMG-20230817-WA0010.jpg" alt="Produkter och arbetsredskap på Guldsaxen" loading="lazy">
+                        <span class="gallery-expand" aria-hidden="true">↗</span>
+                    </button>
+                    <button class="gallery-item gallery-wide" type="button" data-gallery-index="5" aria-label="Förstora bild på salongen">
+                        <img src="pictures/IMG-20230817-WA0012.jpg" alt="Vy över Guldsaxens välkomnande salong" loading="lazy">
+                        <span class="gallery-expand" aria-hidden="true">↗</span>
+                    </button>
+                </div>
             </div>
-    
-            <!-- Öppettider till höger -->
-            <div class="footer-hours">
-                <h4>Öppettider</h4>
-                <p>Mån - Fre: 10.00 - 18.00</p>
-                <p>Lör: 10.00 - 15.00</p>
-                <p>Sön: Stängt</p>
+        </section>
+
+        <section class="visit section" id="hitta-hit" aria-labelledby="visit-title">
+            <div class="shell">
+                <div class="section-heading reveal">
+                    <p class="eyebrow light"><span></span> Hitta oss</p>
+                    <h2 id="visit-title">Vi ses i <em>stolen.</em></h2>
+                </div>
+                <div class="visit-grid">
+                    <div class="visit-info reveal">
+                        <p class="visit-intro">Vår butik ligger i hjärtat av staden, enkelt att nå och mitt i all stadens puls. En perfekt plats för dig som vill ha högkvalitativa frisörtjänster mitt i centrum.</p>
+                        <div class="contact-grid">
+                            <div class="contact-block">
+                                <span class="contact-label">Besök oss</span>
+                                <p>Skolgatan 58B<br>903 29 Umeå</p>
+                                <a class="text-link light" href="https://www.google.com/maps/dir/?api=1&destination=Skolgatan+58B,+Umeå" target="_blank" rel="noopener noreferrer">Få vägbeskrivning <span aria-hidden="true">↗</span></a>
+                            </div>
+                            <div class="contact-block">
+                                <span class="contact-label">Kontakta oss</span>
+                                <p><a href="tel:+46903409995">090 - 340 99 95</a></p>
+                                <a class="text-link light" href="tel:+46903409995">Ring salongen <span aria-hidden="true">↗</span></a>
+                            </div>
+                            <div class="contact-block hours-block">
+                                <span class="contact-label">Öppettider</span>
+                                <dl class="hours-list">
+                                    <div><dt>Mån – Fre</dt><dd>10:00 – 18:00</dd></div>
+                                    <div><dt>Lördag</dt><dd>10:00 – 15:00</dd></div>
+                                    <div><dt>Söndag</dt><dd>Stängt</dd></div>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="map-wrap reveal">
+                        <iframe title="Karta till Guldsaxen på Skolgatan 58B i Umeå" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1759.8498914943839!2d20.25965857760673!3d63.82685704326291!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x467c5ba95a8f1ded%3A0x9535f04a9c34c356!2sGuldsaxen!5e0!3m2!1sen!2sse!4v1692837176780!5m2!1sen!2sse" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="shell">
+            <div class="footer-top">
+                <a class="footer-brand" href="#hem">Guld<span>saxen</span><small>Barbershop · Umeå</small></a>
+                <p>Bra hår. Bra stämning.<br>Alltid drop-in.</p>
+            </div>
+            <div class="footer-bottom">
+                <p>© <span id="currentYear">2026</span> Guldsaxen</p>
+                <div class="footer-links">
+                    <a href="https://www.instagram.com/guldsaxen_umea/" target="_blank" rel="noopener noreferrer">Instagram <span aria-hidden="true">↗</span></a>
+                    <a href="https://www.facebook.com/people/Guldsaxen/61563805727143/?rdid=jiEnTb0MxmbA3nNo&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1DP8qavJRg%2Fs" target="_blank" rel="noopener noreferrer">Facebook <span aria-hidden="true">↗</span></a>
+                </div>
+                <a href="#hem">Till toppen ↑</a>
             </div>
         </div>
     </footer>
-    <div class="social-logos">
-        <a href="https://www.instagram.com/guldsaxen_umea/" target="_blank" class="instagram-logo">
-            <img src="icons/instagram.png" alt="instagram">
+
+    <div class="mobile-actions" aria-label="Snabba kontaktval">
+        <a href="tel:+46903409995">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.69 2.8a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.33 1.84.56 2.8.69A2 2 0 0 1 22 16.92z"/></svg>
+            Ring oss
         </a>
-        <a href="https://www.facebook.com/people/Guldsaxen/61563805727143/?rdid=jiEnTb0MxmbA3nNo&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1DP8qavJRg%2F" target="_blank" class="facebook-logo">
-            <img src="icons/facebook.png" alt="facebook">
+        <a href="https://www.google.com/maps/dir/?api=1&destination=Skolgatan+58B,+Umeå" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0z"/><circle cx="12" cy="10" r="2.5"/></svg>
+            Hitta hit
         </a>
     </div>
-    
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha512-BwHfrr4c9kmRkLw6iXFdzcdWV/PGkVgiIyIWLLlTSXzWQzxuSg4DiQUCpauz/EWjgk5TYQqX/kvn9pG1NpYfqg==" crossorigin=""></script>
-    <script src="index.js"></script>
-    </body>
-    
-    </html>
-    
+
+    <dialog class="lightbox" id="lightbox" aria-label="Bildgalleri">
+        <button class="lightbox-close" type="button" aria-label="Stäng bildgalleri">×</button>
+        <button class="lightbox-arrow lightbox-prev" type="button" aria-label="Föregående bild">←</button>
+        <figure>
+            <img id="lightboxImage" src="pictures/IMG-20230817-WA0002.jpg" alt="">
+        </figure>
+        <button class="lightbox-arrow lightbox-next" type="button" aria-label="Nästa bild">→</button>
+    </dialog>
+</body>
+</html>
